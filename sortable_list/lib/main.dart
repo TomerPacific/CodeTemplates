@@ -27,23 +27,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  List<String> _data = ["A", "B", "C"];
+
+  void _onReorder(int a, int b) {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Sortable List Demo',
-            ),
-          ],
-        ),
-      ),
+      body: ReorderableListView(children: _data.map((list_item) =>
+        ListTile(
+          key:  Key(list_item),
+          title: Text(list_item),
+          trailing: Icon(Icons.arrow_forward),
+        )
+      ).toList(),
+          onReorder: _onReorder)
     );
   }
 }
