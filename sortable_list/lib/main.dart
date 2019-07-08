@@ -29,10 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> _data = ["A", "B", "C"];
 
-  void _onReorder(int a, int b) {
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +42,16 @@ class _MyHomePageState extends State<MyHomePage> {
           trailing: Icon(Icons.arrow_forward),
         )
       ).toList(),
-          onReorder: _onReorder)
+          onReorder: (oldIndex, newIndex) {
+            setState(() {
+              if (newIndex > _data.length) newIndex = _data.length;
+              if (oldIndex < newIndex) newIndex--;
+
+              String item = _data[oldIndex];
+              _data.remove(item);
+              _data.insert(newIndex, item);
+            });
+          }),
     );
   }
 }
