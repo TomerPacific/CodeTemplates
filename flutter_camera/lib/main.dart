@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_camera/take_picture.dart';
+
+import 'dart:async';
+import 'dart:io';
+import 'package:camera/camera.dart';
+
+
 
 void main() => runApp(MyApp());
 
@@ -27,6 +34,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+
+  Future<CameraDescription> getCamera() async {
+    final cameras = await availableCameras();
+
+    // Get a specific camera from the list of available cameras.
+    final firstCamera = cameras.first;
+
+    return firstCamera;
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -52,7 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(10)
                 ),
               onPressed: () {
+                final camera = getCamera();
+                camera.then((value) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TakePictureScreen(camera: value)),
+                  );
+                });
 
+//                Navigator.pushNamed(context, '/camera');
               }
             ),
           ],
