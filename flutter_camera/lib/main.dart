@@ -76,8 +76,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (context) => TakePictureScreen(camera: value)),
                   );
                 });
-
-//                Navigator.pushNamed(context, '/camera');
               }
             ),
           ],
