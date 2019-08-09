@@ -1,6 +1,7 @@
 package com.tomerpacific.recyclerviewexample;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ public class MyAdapter  extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView textView;
         public MyViewHolder(View v) {
             super(v);
-            textView = v.findViewById(R.id.my_text_view);
+            textView = v.findViewById(R.id.info_text);
         }
     }
 
@@ -30,6 +31,7 @@ public class MyAdapter  extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
 
+       //Change to R.layout.card_view to see a card view layout
         View v = mInflater.inflate(R.layout.recycler_view_row,
                 parent,
                 false);
